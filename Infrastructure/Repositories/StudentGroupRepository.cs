@@ -51,4 +51,15 @@ public class StudentGroupRepository
         var groupstudent = await  conn.QuerySingleAsync<StudentGroup>(query, new { id });
         return groupstudent;
     }
+
+    public async Task<int> GetTotalStudentGroupsCount()
+    {
+        using var conn = Database.Connection();
+        conn.Open();
+        var query = " select count(*) from studentgroups ";
+        var result = await conn.QuerySingleAsync<int> (query);
+        return result;
+    }
+
+
 }

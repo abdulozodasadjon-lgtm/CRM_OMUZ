@@ -50,4 +50,5 @@ public class GroupRepository
         var group = await conn.QuerySingleAsync<Groups>(query, new { id });
         return group;
     }
+
 }

@@ -22,3 +22,4 @@ D:\C#-2\week 4\Day 3 ( CRM )\MyApp\obj\Debug\net10.0\refint\MyApp.dll
 D:\C#-2\week 4\Day 3 ( CRM )\MyApp\obj\Debug\net10.0\MyApp.pdb
 D:\C#-2\week 4\Day 3 ( CRM )\MyApp\obj\Debug\net10.0\MyApp.genruntimeconfig.cache
 D:\C#-2\week 4\Day 3 ( CRM )\MyApp\obj\Debug\net10.0\ref\MyApp.dll
+D:\C#-2\week 4\Day 3 ( CRM )\MyApp\obj\Debug\net10.0\MyApp.sourcelink.json

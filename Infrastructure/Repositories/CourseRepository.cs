@@ -52,4 +52,13 @@ public class CourseRepository
         var course = await conn.QuerySingleAsync<Course>(query, new {id});
         return course;
     }
+
+    public async Task<int> GetTotalCoursesCount()
+    {
+        using var conn = Database.Connection();
+        conn.Open();
+        var query = " select count(*) from courses ";
+        var result = await conn.QuerySingleAsync<int> (query);
+        return result;
+    }
 }

@@ -13,3 +13,4 @@ D:\C#-2\week 4\Day 3 ( CRM )\Infrastructure\obj\Debug\net10.0\Infrastructure.dll
 D:\C#-2\week 4\Day 3 ( CRM )\Infrastructure\obj\Debug\net10.0\refint\Infrastructure.dll
 D:\C#-2\week 4\Day 3 ( CRM )\Infrastructure\obj\Debug\net10.0\Infrastructure.pdb
 D:\C#-2\week 4\Day 3 ( CRM )\Infrastructure\obj\Debug\net10.0\ref\Infrastructure.dll
+D:\C#-2\week 4\Day 3 ( CRM )\Infrastructure\obj\Debug\net10.0\Infrastructure.sourcelink.json

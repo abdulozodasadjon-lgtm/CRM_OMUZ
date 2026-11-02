@@ -49,4 +49,14 @@ public class MentorRepository
         var mentors = await conn.QuerySingleAsync<Mentor>(query, new {mid});
         return mentors;
     }
+
+
+    public async Task<int> GetTotalMentorsCount()
+    {
+        using var conn = Database.Connection();
+        conn.Open();
+        var query = " select count(*) from mentors ";
+        var result = await conn.QuerySingleAsync<int> (query);
+        return result;
+    }
 }
