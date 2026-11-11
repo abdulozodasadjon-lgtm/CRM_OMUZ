@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\C#-2\\week 4\\Day 3 ( CRM )\\Infrastructure\\Infrastructure.csproj": {}
+    "D:\\C#\\week 4\\Day 3 ( CRM )\\Infrastructure\\Infrastructure.csproj": {}
   },
   "projects": {
-    "D:\\C#-2\\week 4\\Day 3 ( CRM )\\Domain\\Domain.csproj": {
+    "D:\\C#\\week 4\\Day 3 ( CRM )\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\C#-2\\week 4\\Day 3 ( CRM )\\Domain\\Domain.csproj",
+        "projectUniqueName": "D:\\C#\\week 4\\Day 3 ( CRM )\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "D:\\C#-2\\week 4\\Day 3 ( CRM )\\Domain\\Domain.csproj",
+        "projectPath": "D:\\C#\\week 4\\Day 3 ( CRM )\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-        "outputPath": "D:\\C#-2\\week 4\\Day 3 ( CRM )\\Domain\\obj\\",
+        "outputPath": "D:\\C#\\week 4\\Day 3 ( CRM )\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -346,14 +346,14 @@
         }
       }
     },
-    "D:\\C#-2\\week 4\\Day 3 ( CRM )\\Infrastructure\\Infrastructure.csproj": {
+    "D:\\C#\\week 4\\Day 3 ( CRM )\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\C#-2\\week 4\\Day 3 ( CRM )\\Infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "D:\\C#\\week 4\\Day 3 ( CRM )\\Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "D:\\C#-2\\week 4\\Day 3 ( CRM )\\Infrastructure\\Infrastructure.csproj",
+        "projectPath": "D:\\C#\\week 4\\Day 3 ( CRM )\\Infrastructure\\Infrastructure.csproj",
         "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-        "outputPath": "D:\\C#-2\\week 4\\Day 3 ( CRM )\\Infrastructure\\obj\\",
+        "outputPath": "D:\\C#\\week 4\\Day 3 ( CRM )\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -376,8 +376,8 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "D:\\C#-2\\week 4\\Day 3 ( CRM )\\Domain\\Domain.csproj": {
-                "projectPath": "D:\\C#-2\\week 4\\Day 3 ( CRM )\\Domain\\Domain.csproj"
+              "D:\\C#\\week 4\\Day 3 ( CRM )\\Domain\\Domain.csproj": {
+                "projectPath": "D:\\C#\\week 4\\Day 3 ( CRM )\\Domain\\Domain.csproj"
               }
             }
           }

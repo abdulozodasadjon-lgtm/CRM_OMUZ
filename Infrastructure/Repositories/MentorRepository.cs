@@ -41,12 +41,12 @@ public class MentorRepository
         return mentors.ToList();
     }
 
-    public async Task<Mentor> GetMentorById(int mid)
+    public async Task<Mentor?> GetMentorById(int mid)
     {
         using var conn = Database.Connection();
         conn.Open();
         var query = "select mentorid, fullname, email, phone, specialization from mentors where mentorid = @mid";
-        var mentors = await conn.QuerySingleAsync<Mentor>(query, new {mid});
+        var mentors = await conn.QuerySingleOrDefaultAsync<Mentor>(query, new {mid});
         return mentors;
     }
 

@@ -42,12 +42,12 @@ public class GroupRepository
         return groups.ToList();
     }
 
-    public async Task<Groups> GetGroupById(int id)
+    public async Task<Groups?> GetGroupById(int id)
     {
         using var conn = Database.Connection();
         conn.Open();
         var query = "select groupid, groupname, courseid, mentorid, startdate, enddate from groups where groupid = @id";
-        var group = await conn.QuerySingleAsync<Groups>(query, new { id });
+        var group = await conn.QuerySingleOrDefaultAsync<Groups>(query, new { id });
         return group;
     }
 

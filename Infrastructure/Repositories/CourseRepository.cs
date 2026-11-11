@@ -44,12 +44,12 @@ public class CourseRepository
     }
 
 
-    public async Task<Course> GetCourseById(int id)
+    public async Task<Course?> GetCourseById(int id)
     {
         using var conn = Database.Connection();
         conn.Open();
         var query = "select courseid, title, description, durationweek from courses where courseid = @id";
-        var course = await conn.QuerySingleAsync<Course>(query, new {id});
+        var course = await conn.QuerySingleOrDefaultAsync<Course>(query, new {id});
         return course;
     }
 

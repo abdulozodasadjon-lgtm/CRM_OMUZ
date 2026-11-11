@@ -3,7 +3,6 @@ using Domain;
 using Domain.Enums;
 using Domain.Models;
 using Infrastructure.Repositories;
-using Infrastructure.Services;
 
 StudentRepository studentrepo = new StudentRepository(){};
 CourseRepository courserepo = new CourseRepository(){};
@@ -241,13 +240,39 @@ StudentGroupRepository stdgrouprepo = new StudentGroupRepository(){};
 //         Console.WriteLine("Please enter a valid status.");
 //     }
 // }
+return;
 
 
 
 
-var groupService = new GroupService(grouprepo, stdgrouprepo);
-var studentsPerGroup = await groupService.GetStudentsPerGroup();
-foreach (var (group, studentCount) in studentsPerGroup)
-{
-    Console.WriteLine($"{group.GroupName}: {studentCount} students");
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

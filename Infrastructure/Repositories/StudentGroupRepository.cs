@@ -21,7 +21,7 @@ public class StudentGroupRepository
         using var conn = Database.Connection();
         conn.Open();
         var query = "update studentgroups set studentid = @StudentId, groupid = @GroupId, status = @Status where studentgroupid = @StudentGroupId";
-        var update = conn.Execute(query, new { studentGroup.StudentGroupId, studentGroup.StudentId, studentGroup.GroupId, Status = studentGroup.Status.ToString() });
+        var update = await conn.ExecuteAsync(query, new { studentGroup.StudentGroupId, studentGroup.StudentId, studentGroup.GroupId, Status = studentGroup.Status.ToString() });
         return update > 0;
     }
 
@@ -43,12 +43,12 @@ public class StudentGroupRepository
          return list.ToList();
     }
 
-    public async Task<StudentGroup> GetStudentGroupById(int id)
+    public async Task<StudentGroup?> GetStudentGroupById(int id)
     {
         using var conn = Database.Connection();
         conn.Open();
         var query = "select studentgroupid, studentid, groupid, status from studentgroups where studentgroupid = @id";
-        var groupstudent = await  conn.QuerySingleAsync<StudentGroup>(query, new { id });
+        var groupstudent = await conn.QuerySingleOrDefaultAsync<StudentGroup>(query, new { id });
         return groupstudent;
     }
 

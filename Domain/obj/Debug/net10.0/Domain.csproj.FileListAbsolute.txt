@@ -10,3 +10,15 @@ D:\C#-2\week 4\Day 3 ( CRM )\Domain\obj\Debug\net10.0\refint\Domain.dll
 D:\C#-2\week 4\Day 3 ( CRM )\Domain\obj\Debug\net10.0\Domain.pdb
 D:\C#-2\week 4\Day 3 ( CRM )\Domain\obj\Debug\net10.0\ref\Domain.dll
 D:\C#-2\week 4\Day 3 ( CRM )\Domain\obj\Debug\net10.0\Domain.sourcelink.json
+D:\C#\week 4\Day 3 ( CRM )\Domain\bin\Debug\net10.0\Domain.deps.json
+D:\C#\week 4\Day 3 ( CRM )\Domain\bin\Debug\net10.0\Domain.dll
+D:\C#\week 4\Day 3 ( CRM )\Domain\bin\Debug\net10.0\Domain.pdb
+D:\C#\week 4\Day 3 ( CRM )\Domain\obj\Debug\net10.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\C#\week 4\Day 3 ( CRM )\Domain\obj\Debug\net10.0\Domain.AssemblyInfoInputs.cache
+D:\C#\week 4\Day 3 ( CRM )\Domain\obj\Debug\net10.0\Domain.AssemblyInfo.cs
+D:\C#\week 4\Day 3 ( CRM )\Domain\obj\Debug\net10.0\Domain.csproj.CoreCompileInputs.cache
+D:\C#\week 4\Day 3 ( CRM )\Domain\obj\Debug\net10.0\Domain.sourcelink.json
+D:\C#\week 4\Day 3 ( CRM )\Domain\obj\Debug\net10.0\Domain.dll
+D:\C#\week 4\Day 3 ( CRM )\Domain\obj\Debug\net10.0\refint\Domain.dll
+D:\C#\week 4\Day 3 ( CRM )\Domain\obj\Debug\net10.0\Domain.pdb
+D:\C#\week 4\Day 3 ( CRM )\Domain\obj\Debug\net10.0\ref\Domain.dll

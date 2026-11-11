@@ -1,5 +1,4 @@
 
-using System.Formats.Asn1;
 using Dapper;
 using Domain;
 using Domain.Enums;
@@ -45,12 +44,12 @@ public class StudentRepository
         return students.ToList();
     }
 
-    public async Task<Student> GetStudentById(int id)
+    public async Task<Student?> GetStudentById(int id)
     {
         using var conn = Database.Connection();
         conn.Open();
         var query = "select studentid, fullname, email, phone, enrollmentdate from students where studentid = @studentid";
-        var student = await conn.QuerySingleAsync<Student>(query, new { studentid = id });
+        var student = await conn.QuerySingleOrDefaultAsync<Student>(query, new { studentid = id });
         return student;
     }
 
@@ -66,8 +65,7 @@ public class StudentRepository
     {
         using var conn = Database.Connection();
         conn.Open();
-        var query = "select s.studentid, s.fullname, s.email, s.phone, s.enrollmentdate from studentgroups sg join students s by s.studentid = sg.studentid where sg.groupid is not null";
-        var result = conn.QueryAsync<Student> (query);
+        var query = "select s.studentid, s.fullname, s.email, s.phone, s.enrollmentdate from students s where exists (select 1 from studentgroups sg where sg.studentid = s.studentid)";
         var students = await conn.QueryAsync<Student>(query);
         return students.ToList();
     } 
@@ -77,8 +75,7 @@ public class StudentRepository
     {
         using var conn = Database.Connection();
         conn.Open();
-        var query = "select s.studentid, s.fullname, s.email, s.phone, s.enrollmentdate from studentgroups sg join students s by s.studentid = sg.studentid where sg.groupid is null";
-        var result = conn.QueryAsync<Student> (query);
+        var query = "select s.studentid, s.fullname, s.email, s.phone, s.enrollmentdate from students s where not exists (select 1 from studentgroups sg where sg.studentid = s.studentid)";
         var students = await conn.QueryAsync<Student>(query);
         return students.ToList();
     } 
@@ -87,8 +84,8 @@ public class StudentRepository
     {
         using var conn = Database.Connection();
         conn.Open();
-        var query = "select s.studentid, s.fullname, s.email, s.phone, s.enrollmentdate from studentgroups sg join students s by s.studentid = sg.studentid where sg.status = @expelled";
-        var students = await conn.QueryAsync<Student>(query, new {StatusEnum.Expelled});
+        var query = "select distinct s.studentid, s.fullname, s.email, s.phone, s.enrollmentdate from students s join studentgroups sg on sg.studentid = s.studentid where sg.status = @status";
+        var students = await conn.QueryAsync<Student>(query, new { status = StatusEnum.Expelled.ToString() });
         return students.ToList();
     }
 
@@ -96,8 +93,8 @@ public class StudentRepository
     {
         using var conn = Database.Connection();
         conn.Open();
-        var query = "select s.studentid, s.fullname, s.email, s.phone, s.enrollmentdate from studentgroups sg join students s by s.studentid = sg.studentid where sg.status = @completed";
-        var students = await conn.QueryAsync<Student>(query, new {StatusEnum.Completed});
+        var query = "select distinct s.studentid, s.fullname, s.email, s.phone, s.enrollmentdate from students s join studentgroups sg on sg.studentid = s.studentid where sg.status = @status";
+        var students = await conn.QueryAsync<Student>(query, new { status = StatusEnum.Completed.ToString() });
         return students.ToList();
     }
     
