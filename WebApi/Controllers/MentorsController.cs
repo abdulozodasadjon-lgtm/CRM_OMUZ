@@ -10,17 +10,14 @@ namespace WebApi.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 public sealed class MentorsController(
-    MentorRepository repository,
-    ILogger<MentorsController> logger) : ControllerBase
+    MentorRepository repository) : ControllerBase
 {
     private readonly MentorRepository _mentorRepo = repository;
-    private readonly ILogger _logger = logger;
 
     [HttpGet]
     public async Task<ActionResult<ApiResponse<List<MentorDto>>>> GetAll()
     {
         var mentors = await repository.GetListMentors();
-        _logger.LogInformation("GET /api/Mentors/ was called.");
         return Ok(new ApiResponse<List<MentorDto>>(HttpStatusCode.OK, "Mentors retrieved", mentors.Select(ToDto).ToList()));
     }
 
@@ -30,11 +27,9 @@ public sealed class MentorsController(
         var mentor = await repository.GetMentorById(id);
         if (mentor is null)
         {
-            _logger.LogInformation("GET {id} /api/Mentors/ is null.", id);
             return NotFound();
         }
 
-        _logger.LogInformation("GET {id} /api/Mentors/ found.", id);
         return Ok(new ApiResponse<MentorDto>(HttpStatusCode.OK, "Mentor retrieved", ToDto(mentor)));
     }
 
@@ -42,7 +37,6 @@ public sealed class MentorsController(
     public async Task<ActionResult<ApiResponse<int>>> GetCount()
     {
         var count = await repository.GetTotalMentorsCount();
-        _logger.LogInformation("GET /api/Mentors/count was called.");
         return Ok(new ApiResponse<int>(HttpStatusCode.OK, "Mentor count retrieved", count));
     }
 
@@ -59,11 +53,9 @@ public sealed class MentorsController(
 
         if (!created)
         {
-            _logger.LogInformation("POST /api/Mentors/not created.");
             return BadRequest(new ApiResponse<bool>(HttpStatusCode.BadRequest, "Mentor was not created", false));
         }
 
-        _logger.LogInformation("POST /api/Mentors/created.");
         return StatusCode(StatusCodes.Status201Created, new ApiResponse<bool>(HttpStatusCode.Created, "Mentor created", true));
     }
 
@@ -81,18 +73,15 @@ public sealed class MentorsController(
 
         if (!updated)
         {
-            _logger.LogInformation("PUT {id} /api/Mentors/not updated.", id);
             return NotFound();
         }
 
-        _logger.LogInformation("PUT {id} /api/Mentors/updated.", id);
         return Ok(new ApiResponse<bool>(HttpStatusCode.OK, "Mentor updated", true));
     }
 
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> Delete(int id)
     {
-        _logger.LogInformation("DELETE {id} /api/Mentors/ called.", id);
         return await repository.DeleteMentor(id) ? NoContent() : NotFound();
     }
 

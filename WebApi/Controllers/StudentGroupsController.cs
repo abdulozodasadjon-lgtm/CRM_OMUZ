@@ -10,16 +10,12 @@ namespace WebApi.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 public sealed class StudentGroupsController(
-    StudentGroupRepository repository,
-    ILogger<StudentGroupsController> logger) : ControllerBase
+    StudentGroupRepository repository) : ControllerBase
 {
-    private readonly ILogger _logger = logger;
-
     [HttpGet]
     public async Task<ActionResult<ApiResponse<List<StudentGroupDto>>>> GetAll()
     {
         var memberships = await repository.GetListOfStudentGroups();
-        _logger.LogInformation("GET /api/StudentGroups was called.");
         return Ok(new ApiResponse<List<StudentGroupDto>>(
             HttpStatusCode.OK,
             "Student groups retrieved",
@@ -32,11 +28,9 @@ public sealed class StudentGroupsController(
         var membership = await repository.GetStudentGroupById(id);
         if (membership is null)
         {
-            _logger.LogInformation("GET {id} /api/StudentGroups was not found.", id);
             return NotFound();
         }
 
-        _logger.LogInformation("GET {id} /api/StudentGroups succeeded.", id);
         return Ok(new ApiResponse<StudentGroupDto>(
             HttpStatusCode.OK,
             "Student group retrieved",
@@ -47,7 +41,6 @@ public sealed class StudentGroupsController(
     public async Task<ActionResult<ApiResponse<int>>> GetCount()
     {
         var count = await repository.GetTotalStudentGroupsCount();
-        _logger.LogInformation("GET /api/StudentGroups/count was called.");
         return Ok(new ApiResponse<int>(
             HttpStatusCode.OK,
             "Student group count retrieved",
@@ -66,14 +59,12 @@ public sealed class StudentGroupsController(
 
         if (!created)
         {
-            _logger.LogInformation("POST /api/StudentGroups was not created.");
             return BadRequest(new ApiResponse<bool>(
                 HttpStatusCode.BadRequest,
                 "Student group was not created",
                 false));
         }
 
-        _logger.LogInformation("POST /api/StudentGroups was created.");
         return StatusCode(
             StatusCodes.Status201Created,
             new ApiResponse<bool>(HttpStatusCode.Created, "Student group created", true));
@@ -92,11 +83,9 @@ public sealed class StudentGroupsController(
 
         if (!updated)
         {
-            _logger.LogInformation("PUT {id} /api/StudentGroups was not updated.", id);
             return NotFound();
         }
 
-        _logger.LogInformation("PUT {id} /api/StudentGroups was updated.", id);
         return Ok(new ApiResponse<bool>(
             HttpStatusCode.OK,
             "Student group updated",
@@ -106,7 +95,6 @@ public sealed class StudentGroupsController(
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> Delete(int id)
     {
-        _logger.LogInformation("DELETE {id} /api/StudentGroups was called.", id);
         return await repository.DeleteStudentGroup(id) ? NoContent() : NotFound();
     }
 

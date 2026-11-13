@@ -9,11 +9,8 @@ namespace WebApi.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public sealed class StudentsController(StudentRepository repository, ILogger logger) : ControllerBase
+public sealed class StudentsController(StudentRepository repository) : ControllerBase
 {
-
-    private readonly ILogger _logger = logger;
-
     [HttpGet]
     public async Task<ActionResult<ApiResponse<List<StudentDto>>>> GetAll()
     {

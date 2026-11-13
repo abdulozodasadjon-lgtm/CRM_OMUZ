@@ -42,3 +42,13 @@ D:\C#\week 4\Day 3 ( CRM )\WebApi\obj\Debug\net10.0\refint\WebApi.dll
 D:\C#\week 4\Day 3 ( CRM )\WebApi\obj\Debug\net10.0\WebApi.pdb
 D:\C#\week 4\Day 3 ( CRM )\WebApi\obj\Debug\net10.0\WebApi.genruntimeconfig.cache
 D:\C#\week 4\Day 3 ( CRM )\WebApi\obj\Debug\net10.0\ref\WebApi.dll
+D:\C#\week 4\Day 3 ( CRM )\WebApi\bin\Debug\net10.0\Microsoft.Extensions.DependencyModel.dll
+D:\C#\week 4\Day 3 ( CRM )\WebApi\bin\Debug\net10.0\Serilog.dll
+D:\C#\week 4\Day 3 ( CRM )\WebApi\bin\Debug\net10.0\Serilog.AspNetCore.dll
+D:\C#\week 4\Day 3 ( CRM )\WebApi\bin\Debug\net10.0\Serilog.Extensions.Hosting.dll
+D:\C#\week 4\Day 3 ( CRM )\WebApi\bin\Debug\net10.0\Serilog.Extensions.Logging.dll
+D:\C#\week 4\Day 3 ( CRM )\WebApi\bin\Debug\net10.0\Serilog.Formatting.Compact.dll
+D:\C#\week 4\Day 3 ( CRM )\WebApi\bin\Debug\net10.0\Serilog.Settings.Configuration.dll
+D:\C#\week 4\Day 3 ( CRM )\WebApi\bin\Debug\net10.0\Serilog.Sinks.Console.dll
+D:\C#\week 4\Day 3 ( CRM )\WebApi\bin\Debug\net10.0\Serilog.Sinks.Debug.dll
+D:\C#\week 4\Day 3 ( CRM )\WebApi\bin\Debug\net10.0\Serilog.Sinks.File.dll
