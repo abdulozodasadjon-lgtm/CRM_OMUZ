@@ -6,4 +6,5 @@ public class Course
     public string? Title {get; set; }
     public string Description {get; set; } = string.Empty;
     public int DurationWeek {get; set; }
+    public ICollection<Groups> Groups { get; set; } = new List<Groups>();
 }

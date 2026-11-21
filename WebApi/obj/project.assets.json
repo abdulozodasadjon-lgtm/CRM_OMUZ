@@ -2,15 +2,85 @@
   "version": 4,
   "targets": {
     "net10.0": {
-      "Dapper/2.1.89": {
+      "Ardalis.Specification/9.3.1": {
         "type": "package",
         "compile": {
-          "lib/net10.0/Dapper.dll": {
+          "lib/net9.0/Ardalis.Specification.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net10.0/Dapper.dll": {
+          "lib/net9.0/Ardalis.Specification.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Ardalis.Specification.EntityFrameworkCore/9.3.1": {
+        "type": "package",
+        "dependencies": {
+          "Ardalis.Specification": "9.3.1",
+          "Microsoft.EntityFrameworkCore": "9.0.8",
+          "Microsoft.EntityFrameworkCore.Relational": "9.0.8"
+        },
+        "compile": {
+          "lib/net9.0/Ardalis.Specification.EntityFrameworkCore.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net9.0/Ardalis.Specification.EntityFrameworkCore.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.EntityFrameworkCore/10.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Abstractions": "10.0.0",
+          "Microsoft.EntityFrameworkCore.Analyzers": "10.0.0"
+        },
+        "compile": {
+          "lib/net10.0/Microsoft.EntityFrameworkCore.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/Microsoft.EntityFrameworkCore.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net10.0/Microsoft.EntityFrameworkCore.props": {}
+        }
+      },
+      "Microsoft.EntityFrameworkCore.Abstractions/10.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0/Microsoft.EntityFrameworkCore.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/Microsoft.EntityFrameworkCore.Abstractions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.EntityFrameworkCore.Analyzers/10.0.0": {
+        "type": "package"
+      },
+      "Microsoft.EntityFrameworkCore.Relational/10.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "10.0.0"
+        },
+        "compile": {
+          "lib/net10.0/Microsoft.EntityFrameworkCore.Relational.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/Microsoft.EntityFrameworkCore.Relational.dll": {
             "related": ".xml"
           }
         }
@@ -55,7 +125,7 @@
           }
         }
       },
-      "Npgsql/10.0.3": {
+      "Npgsql/10.0.0": {
         "type": "package",
         "compile": {
           "lib/net10.0/Npgsql.dll": {
@@ -64,6 +134,24 @@
         },
         "runtime": {
           "lib/net10.0/Npgsql.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Npgsql.EntityFrameworkCore.PostgreSQL/10.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "[10.0.0, 11.0.0)",
+          "Microsoft.EntityFrameworkCore.Relational": "[10.0.0, 11.0.0)",
+          "Npgsql": "10.0.0"
+        },
+        "compile": {
+          "lib/net10.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll": {
             "related": ".xml"
           }
         }
@@ -317,9 +405,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "Dapper": "2.1.89",
           "Domain": "1.0.0",
-          "Npgsql": "10.0.3"
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "10.0.0"
         },
         "compile": {
           "bin/placeholder/Infrastructure.dll": {}
@@ -331,25 +418,102 @@
     }
   },
   "libraries": {
-    "Dapper/2.1.89": {
-      "sha512": "1VjFE664wnxvuhlgP8kS4PeFFF4jqD3VkbIHW6Zlc52zuibgcz5ICnIHcQXlTp6pURpPNGLV0ZpNe5x9KePJnA==",
+    "Ardalis.Specification/9.3.1": {
+      "sha512": "GWrE6BA0smWFLbN+XPU2l5rDF9Uzelfbb3w35jJ0CGIat+p1ChbtLcbkvYRMEculBHOAo12omwAAOm3VFWkoJQ==",
       "type": "package",
-      "path": "dapper/2.1.89",
+      "path": "ardalis.specification/9.3.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "Dapper.png",
-        "dapper.2.1.89.nupkg.sha512",
-        "dapper.nuspec",
-        "lib/net10.0/Dapper.dll",
-        "lib/net10.0/Dapper.xml",
-        "lib/net461/Dapper.dll",
-        "lib/net461/Dapper.xml",
-        "lib/net8.0/Dapper.dll",
-        "lib/net8.0/Dapper.xml",
-        "lib/netstandard2.0/Dapper.dll",
-        "lib/netstandard2.0/Dapper.xml",
-        "readme.md"
+        "LICENSE",
+        "ardalis.specification.9.3.1.nupkg.sha512",
+        "ardalis.specification.nuspec",
+        "icon.png",
+        "lib/net8.0/Ardalis.Specification.dll",
+        "lib/net8.0/Ardalis.Specification.xml",
+        "lib/net9.0/Ardalis.Specification.dll",
+        "lib/net9.0/Ardalis.Specification.xml",
+        "lib/netstandard2.0/Ardalis.Specification.dll",
+        "lib/netstandard2.0/Ardalis.Specification.xml",
+        "readme-nuget.md"
+      ]
+    },
+    "Ardalis.Specification.EntityFrameworkCore/9.3.1": {
+      "sha512": "QbOo4E6HWdKXZ9QUrqcgiGN4EKtzt0kzGzqr2zc32q5QESzBrceJ3GX1ymWVdCCOzJO1+GPm+/a/5ovSkfrLoQ==",
+      "type": "package",
+      "path": "ardalis.specification.entityframeworkcore/9.3.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "ardalis.specification.entityframeworkcore.9.3.1.nupkg.sha512",
+        "ardalis.specification.entityframeworkcore.nuspec",
+        "icon.png",
+        "lib/net8.0/Ardalis.Specification.EntityFrameworkCore.dll",
+        "lib/net8.0/Ardalis.Specification.EntityFrameworkCore.xml",
+        "lib/net9.0/Ardalis.Specification.EntityFrameworkCore.dll",
+        "lib/net9.0/Ardalis.Specification.EntityFrameworkCore.xml",
+        "readme-nuget.md"
+      ]
+    },
+    "Microsoft.EntityFrameworkCore/10.0.0": {
+      "sha512": "hHa2amRjMyBLUH/KTML6FgIAhZ0VFYkhCKwWEax0rO6iNeM1P5MflyeQLE5dniSIOZHc3Oqyv5UIyTFO4e1Auw==",
+      "type": "package",
+      "path": "microsoft.entityframeworkcore/10.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "PACKAGE.md",
+        "buildTransitive/net10.0/Microsoft.EntityFrameworkCore.props",
+        "lib/net10.0/Microsoft.EntityFrameworkCore.dll",
+        "lib/net10.0/Microsoft.EntityFrameworkCore.xml",
+        "microsoft.entityframeworkcore.10.0.0.nupkg.sha512",
+        "microsoft.entityframeworkcore.nuspec"
+      ]
+    },
+    "Microsoft.EntityFrameworkCore.Abstractions/10.0.0": {
+      "sha512": "C+TT9k7f1GQ8agOfV512K9iwrzi76RXVSDiLx+iWC9pz3QhEpSF1Dyk+FpVvd8ULQ+rqymfM8KQ7g48ttQVyMg==",
+      "type": "package",
+      "path": "microsoft.entityframeworkcore.abstractions/10.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "PACKAGE.md",
+        "lib/net10.0/Microsoft.EntityFrameworkCore.Abstractions.dll",
+        "lib/net10.0/Microsoft.EntityFrameworkCore.Abstractions.xml",
+        "microsoft.entityframeworkcore.abstractions.10.0.0.nupkg.sha512",
+        "microsoft.entityframeworkcore.abstractions.nuspec"
+      ]
+    },
+    "Microsoft.EntityFrameworkCore.Analyzers/10.0.0": {
+      "sha512": "TxHQq0kn0tpYs2ljeRl8jtmWk720B0nteqI6mAZM77HWJpYT9Zj8SkkBBlj8K3Yeq18a6NBjz6YutE+shEk4Ag==",
+      "type": "package",
+      "path": "microsoft.entityframeworkcore.analyzers/10.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "analyzers/dotnet/cs/Microsoft.EntityFrameworkCore.Analyzers.dll",
+        "docs/PACKAGE.md",
+        "microsoft.entityframeworkcore.analyzers.10.0.0.nupkg.sha512",
+        "microsoft.entityframeworkcore.analyzers.nuspec"
+      ]
+    },
+    "Microsoft.EntityFrameworkCore.Relational/10.0.0": {
+      "sha512": "A3MX1ee7RDxWCUdx/KqP+74fbksz0UIhkVZh56YHvbPkEKsffCXgHU3LGkRDwqR/MrBNWLCWC/IVX79tzM30ZA==",
+      "type": "package",
+      "path": "microsoft.entityframeworkcore.relational/10.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "PACKAGE.md",
+        "lib/net10.0/Microsoft.EntityFrameworkCore.Relational.dll",
+        "lib/net10.0/Microsoft.EntityFrameworkCore.Relational.xml",
+        "microsoft.entityframeworkcore.relational.10.0.0.nupkg.sha512",
+        "microsoft.entityframeworkcore.relational.nuspec"
       ]
     },
     "Microsoft.Extensions.ApiDescription.Server/10.0.0": {
@@ -659,10 +823,10 @@
         "microsoft.openapi.nuspec"
       ]
     },
-    "Npgsql/10.0.3": {
-      "sha512": "7nb5YzXuvWWJxB0J8DiyL3we+X4FOctZrt0fIBnucOIaIevFEEwGQVZKtiu9olXdlNAK1eNgqSral6r/jlhI4w==",
+    "Npgsql/10.0.0": {
+      "sha512": "xZAYhPOU2rUIFpV48xsqhCx9vXs6Y+0jX2LCoSEfDFYMw9jtAOUk3iQsCnDLrFIv9NT3JGMihn7nnuZsPKqJmA==",
       "type": "package",
-      "path": "npgsql/10.0.3",
+      "path": "npgsql/10.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -673,8 +837,23 @@
         "lib/net8.0/Npgsql.xml",
         "lib/net9.0/Npgsql.dll",
         "lib/net9.0/Npgsql.xml",
-        "npgsql.10.0.3.nupkg.sha512",
+        "npgsql.10.0.0.nupkg.sha512",
         "npgsql.nuspec",
+        "postgresql.png"
+      ]
+    },
+    "Npgsql.EntityFrameworkCore.PostgreSQL/10.0.0": {
+      "sha512": "E2+uSWxSB8LdsUVwPaqRWOcGOP92biry2JEwc0KJMdLJF+aZdczeIdEXVwEyv4nSVMQJH0o8tLhyAMiR6VF0lw==",
+      "type": "package",
+      "path": "npgsql.entityframeworkcore.postgresql/10.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net10.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll",
+        "lib/net10.0/Npgsql.EntityFrameworkCore.PostgreSQL.xml",
+        "npgsql.entityframeworkcore.postgresql.10.0.0.nupkg.sha512",
+        "npgsql.entityframeworkcore.postgresql.nuspec",
         "postgresql.png"
       ]
     },
@@ -983,6 +1162,7 @@
   "projectFileDependencyGroups": {
     "net10.0": [
       "Application >= 1.0.0",
+      "Ardalis.Specification.EntityFrameworkCore >= 9.3.1",
       "Domain >= 1.0.0",
       "Infrastructure >= 1.0.0",
       "Serilog.AspNetCore >= 10.0.0",
@@ -997,11 +1177,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\C#\\week 4\\Day 3 ( CRM )\\WebApi\\WebApi.csproj",
+      "projectUniqueName": "D:\\C#\\CRM\\WebApi\\WebApi.csproj",
       "projectName": "WebApi",
-      "projectPath": "D:\\C#\\week 4\\Day 3 ( CRM )\\WebApi\\WebApi.csproj",
+      "projectPath": "D:\\C#\\CRM\\WebApi\\WebApi.csproj",
       "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-      "outputPath": "D:\\C#\\week 4\\Day 3 ( CRM )\\WebApi\\obj\\",
+      "outputPath": "D:\\C#\\CRM\\WebApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1024,14 +1204,14 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "projectReferences": {
-            "D:\\C#\\week 4\\Day 3 ( CRM )\\Application\\Application.csproj": {
-              "projectPath": "D:\\C#\\week 4\\Day 3 ( CRM )\\Application\\Application.csproj"
+            "D:\\C#\\CRM\\Application\\Application.csproj": {
+              "projectPath": "D:\\C#\\CRM\\Application\\Application.csproj"
             },
-            "D:\\C#\\week 4\\Day 3 ( CRM )\\Domain\\Domain.csproj": {
-              "projectPath": "D:\\C#\\week 4\\Day 3 ( CRM )\\Domain\\Domain.csproj"
+            "d:\\C#\\CRM\\Domain\\Domain.csproj": {
+              "projectPath": "d:\\C#\\CRM\\Domain\\Domain.csproj"
             },
-            "D:\\C#\\week 4\\Day 3 ( CRM )\\Infrastructure\\Infrastructure.csproj": {
-              "projectPath": "D:\\C#\\week 4\\Day 3 ( CRM )\\Infrastructure\\Infrastructure.csproj"
+            "d:\\C#\\CRM\\Infrastructure\\Infrastructure.csproj": {
+              "projectPath": "d:\\C#\\CRM\\Infrastructure\\Infrastructure.csproj"
             }
           }
         }
@@ -1053,6 +1233,10 @@
         "framework": "net10.0",
         "targetAlias": "net10.0",
         "dependencies": {
+          "Ardalis.Specification.EntityFrameworkCore": {
+            "target": "Package",
+            "version": "[9.3.1, )"
+          },
           "Serilog.AspNetCore": {
             "target": "Package",
             "version": "[10.0.0, )"

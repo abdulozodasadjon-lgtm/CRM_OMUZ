@@ -1,54 +1,40 @@
-using Dapper;
 using Domain;
 using Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories;
 
-public class GroupRepository
+public class GroupRepository(DatabaseContext context)
 {
     public async Task<bool> AddGroup(Groups group)
     {
-        using var conn = Database.Connection();
-        conn.Open();
-        var query = "insert into groups (groupname, courseid, mentorid, startdate, enddate) values (@GroupName, @CourseId, @MentorId, @StartDate, @EndDate)";
-        var add =await conn.ExecuteAsync(query, group);
-        return add > 0;
+        context.Groups.Add(group);
+        return await context.SaveChangesAsync() > 0;
     }
 
     public async Task<bool> UpdateGroup(Groups group)
     {
-        using var conn = Database.Connection();
-        conn.Open();
-        var query = "update groups set groupname = @GroupName, courseid = @CourseId, mentorid = @MentorId, startdate = @StartDate, enddate = @EndDate where groupid = @GroupId";
-        var update = await conn.ExecuteAsync(query, group);
-        return update > 0;
+        if (!await context.Groups.AnyAsync(existing => existing.GroupId == group.GroupId))
+            return false;
+
+        context.Groups.Update(group);
+        return await context.SaveChangesAsync() > 0;
     }
 
     public async Task<bool> DeleteGroup(int id)
     {
-        using var conn = Database.Connection();
-        conn.Open();
-        var query = "delete from groups where groupid = @id";
-        var delete = await conn.ExecuteAsync(query, new { id });
-        return delete > 0;
+        var group = await context.Groups.FindAsync(id);
+        if (group is null)
+            return false;
+
+        context.Groups.Remove(group);
+        return await context.SaveChangesAsync() > 0;
     }
 
-    public async Task<List<Groups>> GetListOfGroups()
-    {
-        using var conn = Database.Connection();
-        conn.Open();
-        var query = "select groupid, groupname, courseid, mentorid, startdate, enddate from groups";
-        var groups = await conn.QueryAsync<Groups>(query);
-        return groups.ToList();
-    }
+    public Task<List<Groups>> GetListOfGroups() =>
+        context.Groups.AsNoTracking().ToListAsync();
 
-    public async Task<Groups?> GetGroupById(int id)
-    {
-        using var conn = Database.Connection();
-        conn.Open();
-        var query = "select groupid, groupname, courseid, mentorid, startdate, enddate from groups where groupid = @id";
-        var group = await conn.QuerySingleOrDefaultAsync<Groups>(query, new { id });
-        return group;
-    }
+    public Task<Groups?> GetGroupById(int id) =>
+        context.Groups.AsNoTracking().FirstOrDefaultAsync(group => group.GroupId == id);
 
 }

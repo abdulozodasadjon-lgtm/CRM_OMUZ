@@ -9,6 +9,7 @@
       "WebApi/1.0.0": {
         "dependencies": {
           "Application": "1.0.0",
+          "Ardalis.Specification.EntityFrameworkCore": "9.3.1",
           "Domain": "1.0.0",
           "Infrastructure": "1.0.0",
           "Serilog.AspNetCore": "10.0.0",
@@ -19,11 +20,54 @@
           "WebApi.dll": {}
         }
       },
-      "Dapper/2.1.89": {
+      "Ardalis.Specification/9.3.1": {
         "runtime": {
-          "lib/net10.0/Dapper.dll": {
-            "assemblyVersion": "2.0.0.0",
-            "fileVersion": "2.1.89.60231"
+          "lib/net9.0/Ardalis.Specification.dll": {
+            "assemblyVersion": "9.3.1.0",
+            "fileVersion": "9.3.1.0"
+          }
+        }
+      },
+      "Ardalis.Specification.EntityFrameworkCore/9.3.1": {
+        "dependencies": {
+          "Ardalis.Specification": "9.3.1",
+          "Microsoft.EntityFrameworkCore": "10.0.0",
+          "Microsoft.EntityFrameworkCore.Relational": "10.0.0"
+        },
+        "runtime": {
+          "lib/net9.0/Ardalis.Specification.EntityFrameworkCore.dll": {
+            "assemblyVersion": "9.3.1.0",
+            "fileVersion": "9.3.1.0"
+          }
+        }
+      },
+      "Microsoft.EntityFrameworkCore/10.0.0": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Abstractions": "10.0.0"
+        },
+        "runtime": {
+          "lib/net10.0/Microsoft.EntityFrameworkCore.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.52411"
+          }
+        }
+      },
+      "Microsoft.EntityFrameworkCore.Abstractions/10.0.0": {
+        "runtime": {
+          "lib/net10.0/Microsoft.EntityFrameworkCore.Abstractions.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.52411"
+          }
+        }
+      },
+      "Microsoft.EntityFrameworkCore.Relational/10.0.0": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "10.0.0"
+        },
+        "runtime": {
+          "lib/net10.0/Microsoft.EntityFrameworkCore.Relational.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.52411"
           }
         }
       },
@@ -43,11 +87,24 @@
           }
         }
       },
-      "Npgsql/10.0.3": {
+      "Npgsql/10.0.0": {
         "runtime": {
           "lib/net10.0/Npgsql.dll": {
-            "assemblyVersion": "10.0.3.0",
-            "fileVersion": "10.0.3.0"
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.0.0"
+          }
+        }
+      },
+      "Npgsql.EntityFrameworkCore.PostgreSQL/10.0.0": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "10.0.0",
+          "Microsoft.EntityFrameworkCore.Relational": "10.0.0",
+          "Npgsql": "10.0.0"
+        },
+        "runtime": {
+          "lib/net10.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.0.0"
           }
         }
       },
@@ -214,9 +271,8 @@
       },
       "Infrastructure/1.0.0": {
         "dependencies": {
-          "Dapper": "2.1.89",
           "Domain": "1.0.0",
-          "Npgsql": "10.0.3"
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "10.0.0"
         },
         "runtime": {
           "Infrastructure.dll": {
@@ -233,12 +289,40 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Dapper/2.1.89": {
+    "Ardalis.Specification/9.3.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-1VjFE664wnxvuhlgP8kS4PeFFF4jqD3VkbIHW6Zlc52zuibgcz5ICnIHcQXlTp6pURpPNGLV0ZpNe5x9KePJnA==",
-      "path": "dapper/2.1.89",
-      "hashPath": "dapper.2.1.89.nupkg.sha512"
+      "sha512": "sha512-GWrE6BA0smWFLbN+XPU2l5rDF9Uzelfbb3w35jJ0CGIat+p1ChbtLcbkvYRMEculBHOAo12omwAAOm3VFWkoJQ==",
+      "path": "ardalis.specification/9.3.1",
+      "hashPath": "ardalis.specification.9.3.1.nupkg.sha512"
+    },
+    "Ardalis.Specification.EntityFrameworkCore/9.3.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QbOo4E6HWdKXZ9QUrqcgiGN4EKtzt0kzGzqr2zc32q5QESzBrceJ3GX1ymWVdCCOzJO1+GPm+/a/5ovSkfrLoQ==",
+      "path": "ardalis.specification.entityframeworkcore/9.3.1",
+      "hashPath": "ardalis.specification.entityframeworkcore.9.3.1.nupkg.sha512"
+    },
+    "Microsoft.EntityFrameworkCore/10.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-hHa2amRjMyBLUH/KTML6FgIAhZ0VFYkhCKwWEax0rO6iNeM1P5MflyeQLE5dniSIOZHc3Oqyv5UIyTFO4e1Auw==",
+      "path": "microsoft.entityframeworkcore/10.0.0",
+      "hashPath": "microsoft.entityframeworkcore.10.0.0.nupkg.sha512"
+    },
+    "Microsoft.EntityFrameworkCore.Abstractions/10.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-C+TT9k7f1GQ8agOfV512K9iwrzi76RXVSDiLx+iWC9pz3QhEpSF1Dyk+FpVvd8ULQ+rqymfM8KQ7g48ttQVyMg==",
+      "path": "microsoft.entityframeworkcore.abstractions/10.0.0",
+      "hashPath": "microsoft.entityframeworkcore.abstractions.10.0.0.nupkg.sha512"
+    },
+    "Microsoft.EntityFrameworkCore.Relational/10.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-A3MX1ee7RDxWCUdx/KqP+74fbksz0UIhkVZh56YHvbPkEKsffCXgHU3LGkRDwqR/MrBNWLCWC/IVX79tzM30ZA==",
+      "path": "microsoft.entityframeworkcore.relational/10.0.0",
+      "hashPath": "microsoft.entityframeworkcore.relational.10.0.0.nupkg.sha512"
     },
     "Microsoft.Extensions.DependencyModel/10.0.0": {
       "type": "package",
@@ -254,12 +338,19 @@
       "path": "microsoft.openapi/3.11.0",
       "hashPath": "microsoft.openapi.3.11.0.nupkg.sha512"
     },
-    "Npgsql/10.0.3": {
+    "Npgsql/10.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-7nb5YzXuvWWJxB0J8DiyL3we+X4FOctZrt0fIBnucOIaIevFEEwGQVZKtiu9olXdlNAK1eNgqSral6r/jlhI4w==",
-      "path": "npgsql/10.0.3",
-      "hashPath": "npgsql.10.0.3.nupkg.sha512"
+      "sha512": "sha512-xZAYhPOU2rUIFpV48xsqhCx9vXs6Y+0jX2LCoSEfDFYMw9jtAOUk3iQsCnDLrFIv9NT3JGMihn7nnuZsPKqJmA==",
+      "path": "npgsql/10.0.0",
+      "hashPath": "npgsql.10.0.0.nupkg.sha512"
+    },
+    "Npgsql.EntityFrameworkCore.PostgreSQL/10.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-E2+uSWxSB8LdsUVwPaqRWOcGOP92biry2JEwc0KJMdLJF+aZdczeIdEXVwEyv4nSVMQJH0o8tLhyAMiR6VF0lw==",
+      "path": "npgsql.entityframeworkcore.postgresql/10.0.0",
+      "hashPath": "npgsql.entityframeworkcore.postgresql.10.0.0.nupkg.sha512"
     },
     "Serilog/4.3.0": {
       "type": "package",

@@ -1,7 +1,7 @@
 using System.Net;
+using Application.Interfaces;
 using Application.Responses;
 using Domain;
-using Infrastructure.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.DTOs;
 
@@ -9,22 +9,19 @@ namespace WebApi.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public sealed class MentorsController(
-    MentorRepository repository) : ControllerBase
+public sealed class MentorsController(IMentorService service) : ControllerBase
 {
-    private readonly MentorRepository _mentorRepo = repository;
-
     [HttpGet]
     public async Task<ActionResult<ApiResponse<List<MentorDto>>>> GetAll()
     {
-        var mentors = await repository.GetListMentors();
+        var mentors = await service.GetAllAsync();
         return Ok(new ApiResponse<List<MentorDto>>(HttpStatusCode.OK, "Mentors retrieved", mentors.Select(ToDto).ToList()));
     }
 
     [HttpGet("{id:int}")]
     public async Task<ActionResult<ApiResponse<MentorDto>>> GetById(int id)
     {
-        var mentor = await repository.GetMentorById(id);
+        var mentor = await service.GetByIdAsync(id);
         if (mentor is null)
         {
             return NotFound();
@@ -36,14 +33,14 @@ public sealed class MentorsController(
     [HttpGet("count")]
     public async Task<ActionResult<ApiResponse<int>>> GetCount()
     {
-        var count = await repository.GetTotalMentorsCount();
+        var count = await service.GetCountAsync();
         return Ok(new ApiResponse<int>(HttpStatusCode.OK, "Mentor count retrieved", count));
     }
 
     [HttpPost]
     public async Task<ActionResult<ApiResponse<bool>>> Create(CreateMentorDto dto)
     {
-        var created = await repository.AddMentor(new Mentor
+        var created = await service.CreateAsync(new Mentor
         {
             FullName = dto.FullName,
             Email = dto.Email,
@@ -62,7 +59,7 @@ public sealed class MentorsController(
     [HttpPut("{id:int}")]
     public async Task<ActionResult<ApiResponse<bool>>> Update(int id, UpdateMentorDto dto)
     {
-        var updated = await repository.UpdateMentor(new Mentor
+        var updated = await service.UpdateAsync(new Mentor
         {
             MentorId = id,
             FullName = dto.FullName,
@@ -82,7 +79,7 @@ public sealed class MentorsController(
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> Delete(int id)
     {
-        return await repository.DeleteMentor(id) ? NoContent() : NotFound();
+        return await service.DeleteAsync(id) ? NoContent() : NotFound();
     }
 
     private static MentorDto ToDto(Mentor mentor) => new()

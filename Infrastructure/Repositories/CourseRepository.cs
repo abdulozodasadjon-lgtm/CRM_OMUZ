@@ -1,64 +1,41 @@
-using System.Data;
-using Dapper;
 using Domain;
 using Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories;
 
-public class CourseRepository
+public class CourseRepository(DatabaseContext context)
 {
     public async Task<bool> AddCourse(Course course)
     {
-        using var conn = Database.Connection();
-        conn.Open();
-        var query = "insert into courses (Title, Description, DurationWeek) values (@Title, @Description, @DurationWeek)";
-        var add = await conn.ExecuteAsync(query, new { course.Title, course.Description, course.DurationWeek });
-        return add > 0;
+        context.Courses.Add(course);
+        return await context.SaveChangesAsync() > 0;
     }
 
     public async Task<bool> UpdateCourse(Course course)
     {
-        using var conn = Database.Connection();
-        conn.Open();
-        var query =  "update courses set Title = @title, Description = @description, DurationWeek = @durationweek where courseid = @courseid";
-        var res = await conn.ExecuteAsync(query, new {course.CourseId, course.Title, course.Description, course.DurationWeek});
-        return res > 0;
+        if (!await context.Courses.AnyAsync(existing => existing.CourseId == course.CourseId))
+            return false;
+
+        context.Courses.Update(course);
+        return await context.SaveChangesAsync() > 0;
     }
 
     public async Task<bool> DeleteCourse(int cid)
     {
-        using var conn = Database.Connection();
-        conn.Open();
-        var query = "delete from courses where courseid = @cid";
-        var res = await conn.ExecuteAsync(query, new {cid});
-        return res > 0;
+        var course = await context.Courses.FindAsync(cid);
+        if (course is null)
+            return false;
+
+        context.Courses.Remove(course);
+        return await context.SaveChangesAsync() > 0;
     }
 
-    public async Task<List<Course>> GetListOfCourses()
-    {
-        using var conn = Database.Connection();
-        conn.Open();
-        var query = "select courseid, title, description, durationweek from courses";
-        var courses = await conn.QueryAsync<Course>(query);
-        return courses.ToList();
-    }
+    public Task<List<Course>> GetListOfCourses() =>
+        context.Courses.AsNoTracking().ToListAsync();
 
+    public Task<Course?> GetCourseById(int id) =>
+        context.Courses.AsNoTracking().FirstOrDefaultAsync(course => course.CourseId == id);
 
-    public async Task<Course?> GetCourseById(int id)
-    {
-        using var conn = Database.Connection();
-        conn.Open();
-        var query = "select courseid, title, description, durationweek from courses where courseid = @id";
-        var course = await conn.QuerySingleOrDefaultAsync<Course>(query, new {id});
-        return course;
-    }
-
-    public async Task<int> GetTotalCoursesCount()
-    {
-        using var conn = Database.Connection();
-        conn.Open();
-        var query = " select count(*) from courses ";
-        var result = await conn.QuerySingleAsync<int> (query);
-        return result;
-    }
+    public Task<int> GetTotalCoursesCount() => context.Courses.CountAsync();
 }

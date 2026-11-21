@@ -8,4 +8,6 @@ public class StudentGroup
     public int StudentId {get; set; }
     public int GroupId {get; set; }
     public  StatusEnum Status {get; set; }
+    public Student Student { get; set; } = null!;
+    public Groups Group { get; set; } = null!;
 }

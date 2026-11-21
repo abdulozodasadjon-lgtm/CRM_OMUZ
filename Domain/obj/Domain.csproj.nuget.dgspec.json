@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\C#\\week 4\\Day 3 ( CRM )\\Domain\\Domain.csproj": {}
+    "d:\\C#\\CRM\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "D:\\C#\\week 4\\Day 3 ( CRM )\\Domain\\Domain.csproj": {
+    "d:\\C#\\CRM\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\C#\\week 4\\Day 3 ( CRM )\\Domain\\Domain.csproj",
+        "projectUniqueName": "d:\\C#\\CRM\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "D:\\C#\\week 4\\Day 3 ( CRM )\\Domain\\Domain.csproj",
+        "projectPath": "d:\\C#\\CRM\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-        "outputPath": "D:\\C#\\week 4\\Day 3 ( CRM )\\Domain\\obj\\",
+        "outputPath": "d:\\C#\\CRM\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

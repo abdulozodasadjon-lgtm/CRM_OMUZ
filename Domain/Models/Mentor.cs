@@ -7,4 +7,5 @@ public class Mentor
     public string Email {get; set; } = string.Empty;
     public string Phone {get; set; } = string.Empty;
     public string Specialization {get; set; } = string.Empty;
+    public ICollection<Groups> Groups { get; set; } = new List<Groups>();
 }

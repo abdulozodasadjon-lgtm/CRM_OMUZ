@@ -1,7 +1,7 @@
 using System.Net;
+using Application.Interfaces;
 using Application.Responses;
 using Domain;
-using Infrastructure.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.DTOs;
 
@@ -9,23 +9,20 @@ namespace WebApi.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class CoursesController(
-    CourseRepository repository) : ControllerBase
-    {
-    private readonly CourseRepository _courserepo = repository;
-
+public sealed class CoursesController(ICourseService service) : ControllerBase
+{
 
     [HttpGet]
     public async Task<ActionResult<ApiResponse<List<CourseDto>>>> GetAll()
     {
-        var courses = await repository.GetListOfCourses();
+        var courses = await service.GetAllAsync();
         return Ok(new ApiResponse<List<CourseDto>>(HttpStatusCode.OK, "Courses retrieved", courses.Select(ToDto).ToList()));
     }
 
     [HttpGet("{id:int}")]
     public async Task<ActionResult<ApiResponse<CourseDto>>> GetById(int id)
     {
-        var course = await repository.GetCourseById(id);
+        var course = await service.GetByIdAsync(id);
         if (course is null){ 
             return NotFound();
         }
@@ -35,14 +32,14 @@ public class CoursesController(
     [HttpGet("count")]
     public async Task<ActionResult<ApiResponse<int>>> GetCount()
     {
-        var count = await repository.GetTotalCoursesCount();
+        var count = await service.GetCountAsync();
         return Ok(new ApiResponse<int>(HttpStatusCode.OK, "Course count retrieved", count));
     }
 
     [HttpPost]
     public async Task<ActionResult<ApiResponse<bool>>> Create(CreateCourseDto dto)
     {
-        var created = await repository.AddCourse(new Course { Title = dto.Title, Description = dto.Description, DurationWeek = dto.DurationWeek });
+        var created = await service.CreateAsync(new Course { Title = dto.Title, Description = dto.Description, DurationWeek = dto.DurationWeek });
         if (!created){
             return BadRequest(new ApiResponse<bool>(HttpStatusCode.BadRequest, "Course was not created", false));
         }
@@ -52,7 +49,7 @@ public class CoursesController(
     [HttpPut("{id:int}")]
     public async Task<ActionResult<ApiResponse<bool>>> Update(int id, UpdateCourseDto dto)
     {
-        var updated = await repository.UpdateCourse(new Course { CourseId = id, Title = dto.Title, Description = dto.Description, DurationWeek = dto.DurationWeek });
+        var updated = await service.UpdateAsync(new Course { CourseId = id, Title = dto.Title, Description = dto.Description, DurationWeek = dto.DurationWeek });
         if (!updated) {
             return NotFound();
             }
@@ -62,7 +59,7 @@ public class CoursesController(
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> Delete(int id)
     {
-        return await repository.DeleteCourse(id) ? NoContent() : NotFound();
+        return await service.DeleteAsync(id) ? NoContent() : NotFound();
     }
 
     private static CourseDto ToDto(Course course) => new()

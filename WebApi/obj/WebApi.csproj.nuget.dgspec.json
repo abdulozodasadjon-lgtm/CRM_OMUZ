@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\C#\\week 4\\Day 3 ( CRM )\\WebApi\\WebApi.csproj": {}
+    "D:\\C#\\CRM\\WebApi\\WebApi.csproj": {}
   },
   "projects": {
-    "D:\\C#\\week 4\\Day 3 ( CRM )\\Application\\Application.csproj": {
+    "D:\\C#\\CRM\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\C#\\week 4\\Day 3 ( CRM )\\Application\\Application.csproj",
+        "projectUniqueName": "D:\\C#\\CRM\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "D:\\C#\\week 4\\Day 3 ( CRM )\\Application\\Application.csproj",
+        "projectPath": "D:\\C#\\CRM\\Application\\Application.csproj",
         "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-        "outputPath": "D:\\C#\\week 4\\Day 3 ( CRM )\\Application\\obj\\",
+        "outputPath": "D:\\C#\\CRM\\Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -34,11 +34,11 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "D:\\C#\\week 4\\Day 3 ( CRM )\\Domain\\Domain.csproj": {
-                "projectPath": "D:\\C#\\week 4\\Day 3 ( CRM )\\Domain\\Domain.csproj"
+              "d:\\C#\\CRM\\Domain\\Domain.csproj": {
+                "projectPath": "d:\\C#\\CRM\\Domain\\Domain.csproj"
               },
-              "D:\\C#\\week 4\\Day 3 ( CRM )\\Infrastructure\\Infrastructure.csproj": {
-                "projectPath": "D:\\C#\\week 4\\Day 3 ( CRM )\\Infrastructure\\Infrastructure.csproj"
+              "d:\\C#\\CRM\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "d:\\C#\\CRM\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }
@@ -353,14 +353,14 @@
         }
       }
     },
-    "D:\\C#\\week 4\\Day 3 ( CRM )\\Domain\\Domain.csproj": {
+    "d:\\C#\\CRM\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\C#\\week 4\\Day 3 ( CRM )\\Domain\\Domain.csproj",
+        "projectUniqueName": "d:\\C#\\CRM\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "D:\\C#\\week 4\\Day 3 ( CRM )\\Domain\\Domain.csproj",
+        "projectPath": "d:\\C#\\CRM\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-        "outputPath": "D:\\C#\\week 4\\Day 3 ( CRM )\\Domain\\obj\\",
+        "outputPath": "d:\\C#\\CRM\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -695,14 +695,14 @@
         }
       }
     },
-    "D:\\C#\\week 4\\Day 3 ( CRM )\\Infrastructure\\Infrastructure.csproj": {
+    "d:\\C#\\CRM\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\C#\\week 4\\Day 3 ( CRM )\\Infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "d:\\C#\\CRM\\Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "D:\\C#\\week 4\\Day 3 ( CRM )\\Infrastructure\\Infrastructure.csproj",
+        "projectPath": "d:\\C#\\CRM\\Infrastructure\\Infrastructure.csproj",
         "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-        "outputPath": "D:\\C#\\week 4\\Day 3 ( CRM )\\Infrastructure\\obj\\",
+        "outputPath": "d:\\C#\\CRM\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -725,8 +725,8 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "D:\\C#\\week 4\\Day 3 ( CRM )\\Domain\\Domain.csproj": {
-                "projectPath": "D:\\C#\\week 4\\Day 3 ( CRM )\\Domain\\Domain.csproj"
+              "d:\\C#\\CRM\\Domain\\Domain.csproj": {
+                "projectPath": "d:\\C#\\CRM\\Domain\\Domain.csproj"
               }
             }
           }
@@ -748,13 +748,9 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "dependencies": {
-            "Dapper": {
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
-              "version": "[2.1.89, )"
-            },
-            "Npgsql": {
-              "target": "Package",
-              "version": "[10.0.3, )"
+              "version": "[10.0.0, )"
             }
           },
           "imports": [
@@ -1051,14 +1047,14 @@
         }
       }
     },
-    "D:\\C#\\week 4\\Day 3 ( CRM )\\WebApi\\WebApi.csproj": {
+    "D:\\C#\\CRM\\WebApi\\WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\C#\\week 4\\Day 3 ( CRM )\\WebApi\\WebApi.csproj",
+        "projectUniqueName": "D:\\C#\\CRM\\WebApi\\WebApi.csproj",
         "projectName": "WebApi",
-        "projectPath": "D:\\C#\\week 4\\Day 3 ( CRM )\\WebApi\\WebApi.csproj",
+        "projectPath": "D:\\C#\\CRM\\WebApi\\WebApi.csproj",
         "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-        "outputPath": "D:\\C#\\week 4\\Day 3 ( CRM )\\WebApi\\obj\\",
+        "outputPath": "D:\\C#\\CRM\\WebApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1081,14 +1077,14 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "D:\\C#\\week 4\\Day 3 ( CRM )\\Application\\Application.csproj": {
-                "projectPath": "D:\\C#\\week 4\\Day 3 ( CRM )\\Application\\Application.csproj"
+              "D:\\C#\\CRM\\Application\\Application.csproj": {
+                "projectPath": "D:\\C#\\CRM\\Application\\Application.csproj"
               },
-              "D:\\C#\\week 4\\Day 3 ( CRM )\\Domain\\Domain.csproj": {
-                "projectPath": "D:\\C#\\week 4\\Day 3 ( CRM )\\Domain\\Domain.csproj"
+              "d:\\C#\\CRM\\Domain\\Domain.csproj": {
+                "projectPath": "d:\\C#\\CRM\\Domain\\Domain.csproj"
               },
-              "D:\\C#\\week 4\\Day 3 ( CRM )\\Infrastructure\\Infrastructure.csproj": {
-                "projectPath": "D:\\C#\\week 4\\Day 3 ( CRM )\\Infrastructure\\Infrastructure.csproj"
+              "d:\\C#\\CRM\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "d:\\C#\\CRM\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }
@@ -1110,6 +1106,10 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "dependencies": {
+            "Ardalis.Specification.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.3.1, )"
+            },
             "Serilog.AspNetCore": {
               "target": "Package",
               "version": "[10.0.0, )"

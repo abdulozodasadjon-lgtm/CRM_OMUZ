@@ -1,62 +1,41 @@
-using Dapper;
 using Domain;
 using Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories;
 
-public class MentorRepository
+public class MentorRepository(DatabaseContext context)
 {
     public async Task<bool> AddMentor(Mentor mentor)
     {
-        using var conn = Database.Connection();
-        conn.Open();
-        var query = "insert into mentors (FullName, Email, Phone, Specialization) values (@FullName, @Email, @Phone, @Specialization)";
-        var add = await conn.ExecuteAsync(query, new { mentor.FullName, mentor.Email, mentor.Phone, mentor.Specialization });
-        return add > 0;
+        context.Mentors.Add(mentor);
+        return await context.SaveChangesAsync() > 0;
     }
     
-    public async Task<bool> UpdateMentor(Mentor m)
+    public async Task<bool> UpdateMentor(Mentor mentor)
     {
-        using var conn = Database.Connection();
-        conn.Open();
-        var query = "update mentors set FullName = @fullname, Email = @email, Phone = @phone, Specialization = @specialization where mentorid = @mentorid";
-        var res = await conn.ExecuteAsync(query, new {m.FullName, m.Email, m.Phone, m.Specialization, m.MentorId});
-        return res > 0;
+        if (!await context.Mentors.AnyAsync(existing => existing.MentorId == mentor.MentorId))
+            return false;
+
+        context.Mentors.Update(mentor);
+        return await context.SaveChangesAsync() > 0;
     }
+
     public async Task<bool> DeleteMentor(int id)
     {
-        using var conn = Database.Connection();
-        conn.Open();
-        var query = "delete from mentors where mentorid = @mid";
-        var res = await conn.ExecuteAsync(query, new {mid = id});
-        return res > 0;
+        var mentor = await context.Mentors.FindAsync(id);
+        if (mentor is null)
+            return false;
+
+        context.Mentors.Remove(mentor);
+        return await context.SaveChangesAsync() > 0;
     }
 
-    public async Task<List<Mentor>> GetListMentors()
-    {
-        using var conn = Database.Connection();
-        conn.Open();
-        var query = "select mentorid, fullname, email, phone, specialization from mentors";
-        var mentors = await conn.QueryAsync<Mentor>(query);
-        return mentors.ToList();
-    }
+    public Task<List<Mentor>> GetListMentors() =>
+        context.Mentors.AsNoTracking().ToListAsync();
 
-    public async Task<Mentor?> GetMentorById(int mid)
-    {
-        using var conn = Database.Connection();
-        conn.Open();
-        var query = "select mentorid, fullname, email, phone, specialization from mentors where mentorid = @mid";
-        var mentors = await conn.QuerySingleOrDefaultAsync<Mentor>(query, new {mid});
-        return mentors;
-    }
+    public Task<Mentor?> GetMentorById(int id) =>
+        context.Mentors.AsNoTracking().FirstOrDefaultAsync(mentor => mentor.MentorId == id);
 
-
-    public async Task<int> GetTotalMentorsCount()
-    {
-        using var conn = Database.Connection();
-        conn.Open();
-        var query = " select count(*) from mentors ";
-        var result = await conn.QuerySingleAsync<int> (query);
-        return result;
-    }
+    public Task<int> GetTotalMentorsCount() => context.Mentors.CountAsync();
 }

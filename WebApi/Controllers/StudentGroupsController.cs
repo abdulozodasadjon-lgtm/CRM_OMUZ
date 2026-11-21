@@ -1,7 +1,7 @@
 using System.Net;
+using Application.Interfaces;
 using Application.Responses;
 using Domain.Models;
-using Infrastructure.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.DTOs;
 
@@ -10,12 +10,12 @@ namespace WebApi.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 public sealed class StudentGroupsController(
-    StudentGroupRepository repository) : ControllerBase
+    IStudentGroupService service) : ControllerBase
 {
     [HttpGet]
     public async Task<ActionResult<ApiResponse<List<StudentGroupDto>>>> GetAll()
     {
-        var memberships = await repository.GetListOfStudentGroups();
+        var memberships = await service.GetAllAsync();
         return Ok(new ApiResponse<List<StudentGroupDto>>(
             HttpStatusCode.OK,
             "Student groups retrieved",
@@ -25,7 +25,7 @@ public sealed class StudentGroupsController(
     [HttpGet("{id:int}")]
     public async Task<ActionResult<ApiResponse<StudentGroupDto>>> GetById(int id)
     {
-        var membership = await repository.GetStudentGroupById(id);
+        var membership = await service.GetByIdAsync(id);
         if (membership is null)
         {
             return NotFound();
@@ -40,7 +40,7 @@ public sealed class StudentGroupsController(
     [HttpGet("count")]
     public async Task<ActionResult<ApiResponse<int>>> GetCount()
     {
-        var count = await repository.GetTotalStudentGroupsCount();
+        var count = await service.GetCountAsync();
         return Ok(new ApiResponse<int>(
             HttpStatusCode.OK,
             "Student group count retrieved",
@@ -50,7 +50,7 @@ public sealed class StudentGroupsController(
     [HttpPost]
     public async Task<ActionResult<ApiResponse<bool>>> Create(CreateStudentGroupDto dto)
     {
-        var created = await repository.AddStudentGroup(new StudentGroup
+        var created = await service.CreateAsync(new StudentGroup
         {
             StudentId = dto.StudentId,
             GroupId = dto.GroupId,
@@ -73,7 +73,7 @@ public sealed class StudentGroupsController(
     [HttpPut("{id:int}")]
     public async Task<ActionResult<ApiResponse<bool>>> Update(int id, UpdateStudentGroupDto dto)
     {
-        var updated = await repository.UpdateStudentGroup(new StudentGroup
+        var updated = await service.UpdateAsync(new StudentGroup
         {
             StudentGroupId = id,
             StudentId = dto.StudentId,
@@ -95,7 +95,7 @@ public sealed class StudentGroupsController(
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> Delete(int id)
     {
-        return await repository.DeleteStudentGroup(id) ? NoContent() : NotFound();
+        return await service.DeleteAsync(id) ? NoContent() : NotFound();
     }
 
     private static StudentGroupDto ToDto(StudentGroup membership) => new()

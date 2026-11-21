@@ -1,65 +1,42 @@
-using Dapper;
 using Domain.Enums;
 using Domain.Models;
 using Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories;
 
-public class StudentGroupRepository
+public class StudentGroupRepository(DatabaseContext context)
 {
     public async Task<bool> AddStudentGroup(StudentGroup studentGroup)
     {
-        using var conn = Database.Connection();
-        conn.Open();
-        var query = "insert into studentgroups (studentid, groupid, status) values (@StudentId, @GroupId, @Status)";
-        var add = await conn.ExecuteAsync(query, new{ studentGroup.StudentId, studentGroup.GroupId, Status = studentGroup.Status.ToString()});
-        return add > 0;
+        context.StudentGroups.Add(studentGroup);
+        return await context.SaveChangesAsync() > 0;
     }
 
-    public async Task < bool > UpdateStudentGroup(StudentGroup studentGroup)
+    public async Task<bool> UpdateStudentGroup(StudentGroup studentGroup)
     {
-        using var conn = Database.Connection();
-        conn.Open();
-        var query = "update studentgroups set studentid = @StudentId, groupid = @GroupId, status = @Status where studentgroupid = @StudentGroupId";
-        var update = await conn.ExecuteAsync(query, new { studentGroup.StudentGroupId, studentGroup.StudentId, studentGroup.GroupId, Status = studentGroup.Status.ToString() });
-        return update > 0;
+        if (!await context.StudentGroups.AnyAsync(existing => existing.StudentGroupId == studentGroup.StudentGroupId))
+            return false;
+
+        context.StudentGroups.Update(studentGroup);
+        return await context.SaveChangesAsync() > 0;
     }
 
-    public async Task< bool > DeleteStudentGroup(int id)
+    public async Task<bool> DeleteStudentGroup(int id)
     {
-        using var conn = Database.Connection();
-        conn.Open();
-        var query = "delete from studentgroups where studentgroupid = @id";
-        var delete = await conn.ExecuteAsync(query, new { id });
-        return delete > 0;
+        var studentGroup = await context.StudentGroups.FindAsync(id);
+        if (studentGroup is null)
+            return false;
+
+        context.StudentGroups.Remove(studentGroup);
+        return await context.SaveChangesAsync() > 0;
     }
 
-    public async Task<List<StudentGroup>> GetListOfStudentGroups()
-    {
-        using var conn = Database.Connection();
-        conn.Open();
-        var query = "select studentgroupid, studentid, groupid, status from studentgroups";
-        var list = await conn.QueryAsync<StudentGroup>(query);
-         return list.ToList();
-    }
+    public Task<List<StudentGroup>> GetListOfStudentGroups() =>
+        context.StudentGroups.AsNoTracking().ToListAsync();
 
-    public async Task<StudentGroup?> GetStudentGroupById(int id)
-    {
-        using var conn = Database.Connection();
-        conn.Open();
-        var query = "select studentgroupid, studentid, groupid, status from studentgroups where studentgroupid = @id";
-        var groupstudent = await conn.QuerySingleOrDefaultAsync<StudentGroup>(query, new { id });
-        return groupstudent;
-    }
+    public Task<StudentGroup?> GetStudentGroupById(int id) =>
+        context.StudentGroups.AsNoTracking().FirstOrDefaultAsync(studentGroup => studentGroup.StudentGroupId == id);
 
-    public async Task<int> GetTotalStudentGroupsCount()
-    {
-        using var conn = Database.Connection();
-        conn.Open();
-        var query = " select count(*) from studentgroups ";
-        var result = await conn.QuerySingleAsync<int> (query);
-        return result;
-    }
-
-
+    public Task<int> GetTotalStudentGroupsCount() => context.StudentGroups.CountAsync();
 }
